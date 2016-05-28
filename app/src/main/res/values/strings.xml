@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherDemo</string>
+    <string name="common_blocking_please_wait">请等待</string>
+    <string name="all_forecast_title">预报</string>
+    <string name="pm_25_info">pm25: %s</string>
+
+</resources>

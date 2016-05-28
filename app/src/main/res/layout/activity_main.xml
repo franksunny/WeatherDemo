@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class="com.frank.weatherdemo.databinding.MainActivityBinding">
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.frank.weatherdemo.viewmodel.MainActivityViewModel"/>
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="4dp">
+
+            <RelativeLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                >
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/md_title_bar_height"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:padding="11dp"
+                    android:text="@string/app_name"
+                    android:textSize="16sp"
+                    android:visibility="visible"/>
+
+                <ImageView
+                    android:id="@+id/iv_refresh"
+                    android:layout_width="@dimen/md_title_bar_height"
+                    android:layout_height="@dimen/md_title_bar_height"
+                    android:layout_alignParentRight="true"
+                    android:padding="15dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_refresh_white_48dp"
+                    app:onClickListener="@{viewModel.onRefreshClick}"
+                    android:visibility="@{viewModel.mShowRefresh?View.VISIBLE:View.GONE}"/>
+
+                <ProgressBar
+                    android:id="@+id/pb_refresh"
+                    style="@style/AppTheme.ProgressBar"
+                    android:layout_alignParentRight="true"
+                    android:visibility="@{viewModel.mShowLoading?View.VISIBLE:View.GONE}"
+                    />
+
+            </RelativeLayout>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{viewModel.mWeatherAdapter}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
+
